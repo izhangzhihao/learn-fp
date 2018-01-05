@@ -15,7 +15,7 @@ object TotalOrderInstances {
 
   implicit def listInstance[T](implicit suborder:TotalOrder[T]):TotalOrder[List[T]] = new TotalOrder[List[T]] {
     override def less(lhs: List[T], rhs: List[T]): Boolean = (lhs zip rhs).forall(
-      item => Comparator.less(item._1, item._2)
+      item => suborder.less(item._1, item._2)
     )
   }
 }

@@ -20,8 +20,6 @@ object ShowInstances {
   }
 
   implicit def listInstance[T](implicit xShow:Show[T]):Show[List[T]] = new Show[List[T]] {
-    override def show(xs:List[T]): String = xs.map(
-      item => xShow.show(item)
-    ).mkString("[",", ","]")
+    override def show(xs:List[T]): String = xs.map(xShow.show).mkString("[",", ","]")
   }
 }
